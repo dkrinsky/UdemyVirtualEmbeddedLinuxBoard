@@ -1,5 +1,26 @@
 #!/bin/bash
 
+# passwd file is going to be the input
+# e.g.
+#
+#   root:x:0:0:root:/root:/bin/sh
+#   dkrinsky:x:1:1:dkrinsky:/dkrinsky:/bin/sh
+#
+# Username: It is used when user logs in. It should be between 1 and 32 characters in length.
+# Password: An x character indicates that encrypted password is stored in /etc/shadow file.
+# User ID (UID): 
+# Group ID (GID): 
+# User ID Info (GECOS): The comment field. It allow you to add extra information 
+# Home directory: The absolute path to the directory the user will be in when they log in.
+# Command/shell: The absolute path of a command or shell (/bin/bash). 
+
+# script will
+#    use the passwd input file to define the user names and id.
+#    create a /etc/group file assuming that each user is in its own group only.
+#    create a /etc/shadow file by creating a encrypted password
+
+
+
 # /etc/shadow file format
 #   use only username, encrypted password ($type$salt$hashed)
 # do we need any of the other fields? udemy course set the Last password change to 18541.
@@ -15,19 +36,6 @@
 # Expiration date. The date on which the account was disabled.
 # Unused. This field is left empty and reserved for future use.
 
-# passwd file is going to be the input
-# e.g.
-#
-#   root:x:0:0:root:/root:/bin/sh
-#   dkrinsky:x:1:1:dkrinsky:/dkrinsky:/bin/sh
-#
-# Username: It is used when user logs in. It should be between 1 and 32 characters in length.
-# Password: An x character indicates that encrypted password is stored in /etc/shadow file.
-# User ID (UID): 
-# Group ID (GID): 
-# User ID Info (GECOS): The comment field. It allow you to add extra information 
-# Home directory: The absolute path to the directory the user will be in when they log in.
-# Command/shell: The absolute path of a command or shell (/bin/bash). 
 
 
 
@@ -36,6 +44,8 @@ echo "passwd file: "
 cat ./passwd
 input="./passwd"
 
+rm -rf group
+rm -rf shadow
 
 while IFS= read -r line
 do
@@ -44,18 +54,43 @@ do
     
     username=${arrline[0]}
     userid=${arrline[2]}
-    echo "create home directory /"${username}
+    
+    echo ""
+    echo "create home directory and /etc/group file line for "${username}" "${userid}
     group_line="${username}:x:${userid}:${username}"
+    touch group
     echo "group_line ${group_line}"
+    echo "${group_line}" >> group
+    sudo mount rootfs.ext4 mount
     sudo mkdir -p mount/${username}
+    sudo umount mount
+
+    echo ""
+    if [ ${username} != "root" ]
+    then
+       echo "create password for "${username}" "${userid}
+       password="12345"${userid}
+       password="12345"
+    else
+       echo "create password for "${username}" "${userid}
+#       password="root"
+       password="12345"${userid}
+       password="12345"
+    fi
+    salt="mypassword"
+    pwdhash=$(mkpasswd -m sha-512 ${password} -S ${salt})
+    echo "password"${password}" hash "$pwdhash
+    echo ${username}":"${pwdhash}":::::::" >> shadow
+
 done < "$input"
 
-pwdhash=$(mkpasswd -m sha-512 123456 -S "mypassword")
-echo "--x--x--> $pwdhash"
-
+# mount rootfs and copy passwd, shadow, and group files
 sudo mount rootfs.ext4 mount
 sudo cp passwd mount/etc
+sudo cp shadow mount/etc
 sudo cp group mount/etc
-
+sudo cp inittab mount/etc
 sudo umount mount
-#run_kernel_rootfs
+
+
+run_kernel_rootfs

@@ -13,5 +13,14 @@ sudo mknod dev/tty1 c 4 1
 sudo mknod dev/tty2 c 4 2  
 sudo mknod dev/tty3 c 4 3  
 sudo mknod dev/tty4 c 4 4
+sudo mknod -m 666 dev/null c 1 3
+sudo mknod -m 600 dev/console c 5 1
+# create proc,sys,etc directories
+sudo mkdir -p proc
+sudo mkdir -p sys
+sudo mkdir -p etc
+sudo mkdir -p etc/init.d
+sudo cp -r ../rcS etc/init.d
+sudo chmod +x etc/init.d/rcS
 cd ..
 sudo umount mount_rootfs

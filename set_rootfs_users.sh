@@ -93,4 +93,4 @@ sudo cp inittab mount/etc
 sudo umount mount
 
 
-run_kernel_rootfs
+

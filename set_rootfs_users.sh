@@ -28,7 +28,7 @@
 #
 # Username. User account and login name that exist in the system.
 # Encrypted password. Password using the format $type$salt$hashed and eight to 12 characters long.
-# Last password change. Date since Jan. 1, 1970, when the password was last changed.
+# Last password change. num days since Jan. 1, 1970, when the password was last changed.
 # Minimum password age. 
 # Maximum password age. 
 # Warning period. 
@@ -36,8 +36,9 @@
 # Expiration date. The date on which the account was disabled.
 # Unused. This field is left empty and reserved for future use.
 
-
-
+# number of days after jan 1 1970 that the password changed
+# 18541 ~ 50 years
+last_password_change="18541"
 
 
 echo "passwd file: "
@@ -70,17 +71,14 @@ do
     then
        echo "create password for "${username}" "${userid}
        password="12345"${userid}
-       password="12345"
     else
        echo "create password for "${username}" "${userid}
-#       password="root"
-       password="12345"${userid}
-       password="12345"
+       password="root"
     fi
     salt="mypassword"
     pwdhash=$(mkpasswd -m sha-512 ${password} -S ${salt})
     echo "password"${password}" hash "$pwdhash
-    echo ${username}":"${pwdhash}":::::::" >> shadow
+    echo ${username}":"${pwdhash}":"${last_password_change}"::::::" >> shadow
 
 done < "$input"
 

@@ -32,3 +32,15 @@ sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | fdisk sdcard.img
   w # write the partition table
   q # and we're done
 EOF
+
+
+# losetup provides access to the sdcard partition for formatting
+# NOTE: we are NOT going to load the uboot image onto the sdcard
+# rather, we format the boot partition so it can store the uboot.env
+# and other data
+ld=$(sudo losetup -f --show --partscan sdcard.img)
+echo ${ld}
+boot_partition=${ld}"p1"
+echo ${boot_partition}
+sudo mkfs.vfat -F 16 -n boot ${boot_partition}
+sudo losetup -d ${ld}

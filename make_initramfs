@@ -1,0 +1,21 @@
+cd initramfs
+
+# compile the simple checked-in init.c for use as an initramfs
+arm-linux-gcc --static init.c -o init
+
+# use the cpio command to create an initramfs from the init executable.
+# see https://unix.stackexchange.com/questions/7276/why-use-cpio-for-initramfs for
+# an explanation of why the cpio format is good for initramfs
+
+echo init | cpio -o --format=newc > initramfs
+
+# we pipe the init file to the cpio command, and then pipe the cpio output to the initramfs file
+# The following link has some more (and old) info on the initramfs format
+# https://www.kernel.org/doc/Documentation/early-userspace/buffer-format.txt
+
+#	The initramfs buffer format is based around the "newc" or "crc" CPIO
+# 	formats, and can be created with the cpio(1) utility.  The cpio
+# 	archive can be compressed using gzip(1).  One valid version of an
+# 	initramfs buffer is thus a single .cpio.gz file.
+
+cd ..

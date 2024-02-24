@@ -37,10 +37,13 @@ EOF
 # losetup provides access to the sdcard partition for formatting
 # NOTE: we are NOT going to load the uboot image onto the sdcard
 # rather, we format the boot partition so it can store the uboot.env
-# and other data
+# kernel, dtb, and other data
 ld=$(sudo losetup -f --show --partscan sdcard.img)
 echo ${ld}
 boot_partition=${ld}"p1"
 echo ${boot_partition}
+rootfs_partition=${ld}"p2"
+echo ${rootfs_partition}
 sudo mkfs.vfat -F 16 -n boot ${boot_partition}
+sudo mkfs.ext4 ${rootfs_partition}
 sudo losetup -d ${ld}

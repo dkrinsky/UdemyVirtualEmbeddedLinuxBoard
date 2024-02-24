@@ -7,7 +7,11 @@ arm-linux-gcc --static init.c -o init
 # see https://unix.stackexchange.com/questions/7276/why-use-cpio-for-initramfs for
 # an explanation of why the cpio format is good for initramfs
 
+# create initramfs compressed version of initramfs
 echo init | cpio -o --format=newc > initramfs
+
+# create initramfs compressed version of initramfs
+find . | fakeroot  cpio -ov -H newc | gzip > ../initramfs.igz
 
 # we pipe the init file to the cpio command, and then pipe the cpio output to the initramfs file
 # The following link has some more (and old) info on the initramfs format

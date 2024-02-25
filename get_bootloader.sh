@@ -10,4 +10,4 @@ export CROSS_COMPILE=arm-linux-
 make udemy_qemu_vm_defconfig
 make
 
-
+cd ../../

@@ -10,9 +10,9 @@ rootfs_partition=${ld}"p2"
 echo ${rootfs_partition}
 
 sudo mkdir -p mount
-sudo umount mount
+#sudo umount mount
 sudo mkdir -p rootfs_mount
-sudo umount rootfs_mount
+#sudo umount rootfs_mount
 
 
 sudo mount ${boot_partition} mount
@@ -20,10 +20,9 @@ sudo cp kernel/linux-6.6.11/arch/arm/boot/zImage mount
 sudo cp kernel/linux-6.6.11/arch/arm/boot/dts/arm/vexpress-v2p-ca9.dtb mount
 sudo umount mount
 
-sudo umount mount
 sudo mount ${rootfs_partition} mount
 sudo mount rootfs.ext4 rootfs_mount
-sudo cp rootfs_mount mount
+sudo cp -rf rootfs_mount/* mount
 sudo umount mount
 sudo umount rootfs_mount
 

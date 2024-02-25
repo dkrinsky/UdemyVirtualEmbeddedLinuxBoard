@@ -139,7 +139,6 @@ drwx------ 2 root root 16384 Feb 25 07:48 lost+found
 alias run_uboot_sdcard="qemu-system-arm -M vexpress-a9 -m 128M -nographic -kernel bootloader/u-boot-2023.10/u-boot -sd sdcard.img"
 
       this command attaches the sdcard.img and now uboot can read the FAT partition.
-      in order to create a uboot.env, just type saveenv from the uboot prompt.
 
 
 U-Boot 2023.10 (Feb 25 2024 - 07:38:11 -0500)
@@ -154,4 +153,40 @@ In:    serial
 Out:   serial
 Err:   serial
 Net:   eth0: ethernet@3,02000000
-Hit any key to stop autoboot:  0 
+Hit any key to stop autoboot:  0
+
+
+
+    in order to create a uboot.env, just type saveenv from the uboot prompt.
+    the uboot.env file can then be seen by the print_sd_card.sh
+    and the uboot start up will show the env being loaded.
+
+Device      Boot  Start     End Sectors  Size Id Type
+sdcard.img1 *      2048  133119  131072   64M  e W95 FAT16 (LBA)
+sdcard.img2      133120  264191  131072   64M 83 Linux
+sdcard.img3      264192 2097151 1832960  895M 83 Linux
+
+Command (m for help): 
+/dev/loop16
+ls boot partition/dev/loop16p1
+total 256
+-rwxr-xr-x 1 root root 262144 Dec 31  1979 uboot.env
+ls rootfs partition /dev/loop16p2
+total 16
+drwx------ 2 root root 16384 Feb 25 08:13 lost+found
+
+
+U-Boot 2023.10 (Feb 25 2024 - 08:13:02 -0500)
+
+DRAM:  128 MiB
+WARNING: Caches not enabled
+Core:  18 devices, 10 uclasses, devicetree: embed
+Flash: 64 MiB
+MMC:   mmci@5000: 0
+Loading Environment from FAT... OK
+In:    serial
+Out:   serial
+Err:   serial
+Net:   eth0: ethernet@3,02000000
+Hit any key to stop autoboot:  0
+

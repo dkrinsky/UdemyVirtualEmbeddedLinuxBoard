@@ -31,3 +31,6 @@ alias run_kernel_busybox_initramfs="qemu-system-arm -M vexpress-a9 -kernel kerne
 alias run_kernel_rootfs="qemu-system-arm -M vexpress-a9 -kernel kernel/linux-6.6.11/arch/arm/boot/zImage -dtb kernel/linux-6.6.11/arch/arm/boot/dts/arm/vexpress-v2p-ca9.dtb -append 'console=ttyAMA0,115200 root=/dev/mmcblk0 rw' -nographic -sd rootfs.ext4"
 
 alias run_kernel_rootfs_net="sudo qemu-system-arm -M vexpress-a9 -kernel kernel/linux-6.6.11/arch/arm/boot/zImage -dtb kernel/linux-6.6.11/arch/arm/boot/dts/arm/vexpress-v2p-ca9.dtb -append 'console=ttyAMA0,115200 root=/dev/mmcblk0 rw' -nographic -sd rootfs.ext4 -net tap,script=./qemu-ifup -net nic"
+
+
+alias mk_bootscr="mkimage -T script -n 'Test script' -d boot.txt boot.scr"

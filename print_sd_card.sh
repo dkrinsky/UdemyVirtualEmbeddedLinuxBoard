@@ -15,17 +15,18 @@ echo ${ld}
 boot_partition=${ld}"p1"
 rootfs_partition=${ld}"p2"
 
-sudo rm -rf mount
-mkdir mount
+mkdir -p mount
 
 echo "ls boot partition"${boot_partition}
 sudo mount ${boot_partition} mount
 sudo ls -l mount
+sync
 sudo umount mount
 
 echo "ls rootfs partition "${rootfs_partition}
 sudo mount ${rootfs_partition} mount
 sudo ls -l mount
+sync
 sudo umount mount
-
+sync
 sudo losetup -d ${ld}

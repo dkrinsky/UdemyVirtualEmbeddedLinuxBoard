@@ -18,6 +18,8 @@ git restore .config
 
 CROSS_COMPILE=arm-linux- make
 
+CROSS_COMPILE=arm-linux- make install
+
 cd ../../
 
 

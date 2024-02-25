@@ -190,3 +190,43 @@ Err:   serial
 Net:   eth0: ethernet@3,02000000
 Hit any key to stop autoboot:  0
 
+
+6. get_kernel.sc and run_kernel
+
+   the get_kernel.sc retrieves and builds the kernel.
+   the run_kernel alias can be used for the first kernel run
+
+alias run_kernel="qemu-system-arm -M vexpress-a9 -kernel kernel/linux-6.6.11/arch/arm/boot/zImage -dtb kernel/linux-6.6.11/arch/arm/boot/dts/arm/vexpress-v2p-ca9.dtb -append 'console=ttyAMA0,115200 rdinit=/bin/sh' -nographic"
+
+
+   but since we haven't created an initramfs or rootfs yet, the kernel crashes as shown below
+
+
+/dev/root: Can't open blockdev
+VFS: Cannot open root device "" or unknown-block(0,0): error -6
+Please append a correct "root=" boot option; here are the available partitions:
+1f00          131072 mtdblock0 
+ (driver?)
+1f01           32768 mtdblock1 
+ (driver?)
+List of all bdev filesystems:
+ ext3
+ ext4
+ ext2
+ cramfs
+ squashfs
+ vfat
+
+Kernel panic - not syncing: VFS: Unable to mount root fs on unknown-block(0,0)
+
+7. make_initramfs and run_kernel_initramfs
+
+   the make_initramfs script uses the checked in (hello world like) init.c file and the cpio tool to
+   create an initramfs.  the initramfs, along with the run_kernel_initramfs alias allows the
+   kernel to run without crashing, but without doing much else either.
+
+# run kernel with simple helloworld initramfs (created by make_initramfs using cpio and newc format)
+# this solves the no rootfs crash, but doesn't do much else
+alias run_kernel_initramfs="qemu-system-arm -M vexpress-a9 -kernel kernel/linux-6.6.11/arch/arm/boot/zImage -dtb kernel/linux-6.6.11/arch/arm/boot/dts/arm/vexpress-v2p-ca9.dtb -append 'console=ttyAMA0,115200 ' -nographic -initrd initramfs/initramfs"
+
+

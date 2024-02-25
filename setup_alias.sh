@@ -25,7 +25,7 @@ alias run_kernel="qemu-system-arm -M vexpress-a9 -kernel kernel/linux-6.6.11/arc
 alias run_kernel_initramfs="qemu-system-arm -M vexpress-a9 -kernel kernel/linux-6.6.11/arch/arm/boot/zImage -dtb kernel/linux-6.6.11/arch/arm/boot/dts/arm/vexpress-v2p-ca9.dtb -append 'console=ttyAMA0,115200 ' -nographic -initrd initramfs/initramfs"
 
 # run kernel with busybox initramfs
-alias run_kernel_busybox_initramfs="qemu-system-arm -M vexpress-a9 -kernel kernel/linux-6.6.11/arch/arm/boot/zImage -dtb kernel/linux-6.6.11/arch/arm/boot/dts/arm/vexpress-v2p-ca9.dtb -append 'console=ttyAMA0,115200 rdinit=/bin/sh' -nographic -initrd busybox/initramfs.cpio.gz"
+alias run_kernel_busybox_initramfs="qemu-system-arm -M vexpress-a9 -kernel kernel/linux-6.6.11/arch/arm/boot/zImage -dtb kernel/linux-6.6.11/arch/arm/boot/dts/arm/vexpress-v2p-ca9.dtb -append 'console=ttyAMA0,115200 rdinit=/bin/sh' -nographic -initrd initramfs.cpio.gz"
 
 # run kernel with rootfs
 alias run_kernel_rootfs="qemu-system-arm -M vexpress-a9 -kernel kernel/linux-6.6.11/arch/arm/boot/zImage -dtb kernel/linux-6.6.11/arch/arm/boot/dts/arm/vexpress-v2p-ca9.dtb -append 'console=ttyAMA0,115200 root=/dev/mmcblk0 rw' -nographic -sd rootfs.ext4"

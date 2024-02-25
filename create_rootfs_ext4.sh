@@ -1,3 +1,5 @@
+#!/usr/bin/bash
+
 #start in top directory (above busybox)
 sudo umount mount_rootfs
 sudo rm -rf rootfs.ext4
@@ -22,5 +24,17 @@ sudo mkdir -p etc
 sudo mkdir -p etc/init.d
 sudo cp -r ../rcS etc/init.d
 sudo chmod +x etc/init.d/rcS
+
+if [ -f "../initramfs.cpio" ]; then
+   echo "delete initramfs.cpio"
+   sudo rm ../initramfs.cpio
+fi
+if [ -f "../initramfs.cpio.gz" ]; then
+   echo "delete initramfs.cpio.gz"
+   sudo rm ../initramfs.cpio.gz
+fi
+
+find . | cpio -H newc -ov --owner root:root > ../initramfs.cpio
 cd ..
+gzip initramfs.cpio
 sudo umount mount_rootfs

@@ -11,4 +11,5 @@ export CROSS_COMPILE=arm-linux-
 make vexpress_defconfig
 make
 
+cd ../../
 

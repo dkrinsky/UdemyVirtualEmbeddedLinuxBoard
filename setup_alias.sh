@@ -12,7 +12,6 @@ alias "loop_setup_sdcard"="sudo losetup -f --show --partscan sdcard.img"
 #
 alias run_uboot="qemu-system-arm -M vexpress-a9 -m 128M -nographic -kernel bootloader/u-boot-2023.10/u-boot"
 alias run_uboot_sdcard="qemu-system-arm -M vexpress-a9 -m 128M -nographic -kernel bootloader/u-boot-2023.10/u-boot -sd sdcard.img"
-
 #
 # run kernel commands
 #
@@ -30,7 +29,13 @@ alias run_kernel_busybox_initramfs="qemu-system-arm -M vexpress-a9 -kernel kerne
 # run kernel with rootfs
 alias run_kernel_rootfs="qemu-system-arm -M vexpress-a9 -kernel kernel/linux-6.6.11/arch/arm/boot/zImage -dtb kernel/linux-6.6.11/arch/arm/boot/dts/arm/vexpress-v2p-ca9.dtb -append 'console=ttyAMA0,115200 root=/dev/mmcblk0 rw' -nographic -sd rootfs.ext4"
 
+# run kernel with rootfs on sdcard.img
+alias run_kernel_sdcard="qemu-system-arm -M vexpress-a9 -kernel kernel/linux-6.6.11/arch/arm/boot/zImage -dtb kernel/linux-6.6.11/arch/arm/boot/dts/arm/vexpress-v2p-ca9.dtb -append 'console=ttyAMA0,115200 root=/dev/mmcblk0p2 rw' -nographic -sd sdcard.img"
+
 alias run_kernel_rootfs_net="sudo qemu-system-arm -M vexpress-a9 -kernel kernel/linux-6.6.11/arch/arm/boot/zImage -dtb kernel/linux-6.6.11/arch/arm/boot/dts/arm/vexpress-v2p-ca9.dtb -append 'console=ttyAMA0,115200 root=/dev/mmcblk0 rw' -nographic -sd rootfs.ext4 -net tap,script=./qemu-ifup -net nic"
 
 
-alias mk_bootscr="mkimage -T script -n 'Test script' -d boot.txt boot.scr"
+alias mk_bootscr="mkimage -A arm -T script -n 'Test script' -d boot.txt boot.scr"
+
+
+alias armmake="ARCH=arm CROSS_COMPILE=arm-linux- make"

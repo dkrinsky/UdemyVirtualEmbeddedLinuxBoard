@@ -1,0 +1,12 @@
+diff --git a/include/configs/vexpress_common.h b/include/configs/vexpress_common.h
+index 2c1507a818..e3550031c6 100644
+--- a/include/configs/vexpress_common.h
++++ b/include/configs/vexpress_common.h
+@@ -146,6 +146,7 @@
+ #include <config_distro_bootcmd.h>
+ 
+ #define CFG_EXTRA_ENV_SETTINGS \
++				"scriptaddr=0x60000000\0" \
+                 "loadaddr=0x60100000\0" \
+                 "kernel_addr_r=0x60100000\0" \
+                 "fdt_addr_r=0x60000000\0" \

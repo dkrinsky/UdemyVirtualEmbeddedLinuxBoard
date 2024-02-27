@@ -1,0 +1,225 @@
+
+
+U-Boot 2023.10 (Feb 27 2024 - 17:14:03 -0500)
+
+DRAM:  128 MiB
+WARNING: Caches not enabled
+Core:  18 devices, 10 uclasses, devicetree: embed
+Flash: 64 MiB
+MMC:   mmci@5000: 0
+Loading Environment from FAT... Unable to read "uboot.env" from mmc0:1... 
+In:    serial
+Out:   serial
+Err:   serial
+Net:   eth0: ethernet@3,02000000
+Hit any key to stop autoboot:  2  1  0 
+MMC Device 1 not found
+no mmc device at slot 1
+switch to partitions #0, OK
+mmc0 is current device
+Scanning mmc 0:1...
+Found U-Boot script /boot.scr
+246 bytes read in 6 ms (40 KiB/s)
+## Executing script at 60000000
+5632000 bytes read in 483 ms (11.1 MiB/s)
+14129 bytes read in 9 ms (1.5 MiB/s)
+Kernel image @ 0x60100000 [ 0x000000 - 0x55f000 ]
+## Flattened Device Tree blob at 60000000
+   Booting using the fdt blob at 0x60000000
+Working FDT set to 60000000
+   Loading Device Tree to 66b0f000, end 66b15730 ... OK
+Working FDT set to 66b0f000
+
+Starting kernel ...
+
+Booting Linux on physical CPU 0x0
+Linux version 6.6.11 (dkrinsky@dkrinsky-Precision-7670) (arm-linux-gcc (crosstool-NG 1.26.0) 13.2.0, GNU ld (crosstool-NG 1.26.0) 2.40) #1 SMP Tue Feb 27 16:17:26 EST 2024
+CPU: ARMv7 Processor [410fc090] revision 0 (ARMv7), cr=10c5387d
+CPU: PIPT / VIPT nonaliasing data cache, VIPT nonaliasing instruction cache
+OF: fdt: Machine model: V2P-CA9
+OF: fdt: Ignoring memory block 0x80000000 - 0x80000004
+Memory policy: Data cache writeback
+Reserved memory: created DMA memory pool at 0x4c000000, size 8 MiB
+OF: reserved mem: initialized node vram@4c000000, compatible id shared-dma-pool
+OF: reserved mem: 0x4c000000..0x4c7fffff (8192 KiB) nomap non-reusable vram@4c000000
+cma: Reserved 16 MiB at 0x67000000 on node -1
+Zone ranges:
+  Normal   [mem 0x0000000060000000-0x0000000067ffffff]
+Movable zone start for each node
+Early memory node ranges
+  node   0: [mem 0x0000000060000000-0x0000000067ffffff]
+Initmem setup node 0 [mem 0x0000000060000000-0x0000000067ffffff]
+CPU: All CPU(s) started in SVC mode.
+percpu: Embedded 16 pages/cpu s34900 r8192 d22444 u65536
+Kernel command line: console=ttyAMA0,115200 root=/dev/mmcblk0p2 rw
+printk: log_buf_len individual max cpu contribution: 4096 bytes
+printk: log_buf_len total cpu_extra contributions: 12288 bytes
+printk: log_buf_len min size: 16384 bytes
+printk: log_buf_len: 32768 bytes
+printk: early log buf free: 14868(90%)
+Dentry cache hash table entries: 16384 (order: 4, 65536 bytes, linear)
+Inode-cache hash table entries: 8192 (order: 3, 32768 bytes, linear)
+Built 1 zonelists, mobility grouping on.  Total pages: 32512
+mem auto-init: stack:all(zero), heap alloc:off, heap free:off
+Memory: 98868K/131072K available (9216K kernel code, 691K rwdata, 2064K rodata, 1024K init, 177K bss, 15820K reserved, 16384K cma-reserved)
+SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=4, Nodes=1
+trace event string verifier disabled
+rcu: Hierarchical RCU implementation.
+rcu: 	RCU event tracing is enabled.
+rcu: 	RCU restricting CPUs from NR_CPUS=8 to nr_cpu_ids=4.
+rcu: RCU calculated value of scheduler-enlistment delay is 10 jiffies.
+rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=4
+NR_IRQS: 16, nr_irqs: 16, preallocated irqs: 16
+GIC CPU mask not found - kernel will fail to boot.
+GIC CPU mask not found - kernel will fail to boot.
+L2C: platform modifies aux control register: 0x02020000 -> 0x02420000
+L2C: DT/platform modifies aux control register: 0x02020000 -> 0x02420000
+L2C-310 enabling early BRESP for Cortex-A9
+L2C-310 full line of zeros enabled for Cortex-A9
+L2C-310 dynamic clock gating disabled, standby mode disabled
+L2C-310 cache controller enabled, 8 ways, 128 kB
+L2C-310: CACHE_ID 0x410000c8, AUX_CTRL 0x46420001
+rcu: srcu_init: Setting srcu_struct sizes based on contention.
+sched_clock: 32 bits at 24MHz, resolution 41ns, wraps every 89478484971ns
+clocksource: arm,sp804: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 1911260446275 ns
+smp_twd: clock not found -2
+Console: colour dummy device 80x30
+Calibrating local timer... 93.73MHz.
+Calibrating delay loop... 2105.34 BogoMIPS (lpj=10526720)
+CPU: Testing write buffer coherency: ok
+CPU0: Spectre v2: using BPIALL workaround
+pid_max: default: 32768 minimum: 301
+Mount-cache hash table entries: 1024 (order: 0, 4096 bytes, linear)
+Mountpoint-cache hash table entries: 1024 (order: 0, 4096 bytes, linear)
+CPU0: thread -1, cpu 0, socket 0, mpidr 80000000
+Setting up static identity map for 0x60100000 - 0x60100060
+rcu: Hierarchical SRCU implementation.
+rcu: 	Max phase no-delay instances is 1000.
+smp: Bringing up secondary CPUs ...
+smp: Brought up 1 node, 1 CPU
+SMP: Total of 1 processors activated (2105.34 BogoMIPS).
+CPU: All CPU(s) started in SVC mode.
+devtmpfs: initialized
+VFP support v0.3: implementor 41 architecture 3 part 30 variant 9 rev 0
+clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+futex hash table entries: 1024 (order: 4, 65536 bytes, linear)
+NET: Registered PF_NETLINK/PF_ROUTE protocol family
+DMA: preallocated 256 KiB pool for atomic coherent allocations
+cpuidle: using governor ladder
+hw-breakpoint: debug architecture 0x4 unsupported.
+Serial: AMBA PL011 UART driver
+SCSI subsystem initialized
+usbcore: registered new interface driver usbfs
+usbcore: registered new interface driver hub
+usbcore: registered new device driver usb
+i2c 0-0039: Fixed dependency cycle(s) with /bus@40000000/motherboard-bus@40000000/iofpga@7,00000000/clcd@1f000/port/endpoint
+i2c 0-0039: Fixed dependency cycle(s) with /clcd@10020000/port/endpoint
+pps_core: LinuxPPS API ver. 1 registered
+pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+PTP clock support registered
+Advanced Linux Sound Architecture Driver Initialized.
+clocksource: Switched to clocksource arm,sp804
+NET: Registered PF_INET protocol family
+IP idents hash table entries: 2048 (order: 2, 16384 bytes, linear)
+tcp_listen_portaddr_hash hash table entries: 512 (order: 0, 4096 bytes, linear)
+Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+TCP established hash table entries: 1024 (order: 0, 4096 bytes, linear)
+TCP bind hash table entries: 1024 (order: 2, 16384 bytes, linear)
+TCP: Hash tables configured (established 1024 bind 1024)
+UDP hash table entries: 256 (order: 1, 8192 bytes, linear)
+UDP-Lite hash table entries: 256 (order: 1, 8192 bytes, linear)
+NET: Registered PF_UNIX/PF_LOCAL protocol family
+RPC: Registered named UNIX socket transport module.
+RPC: Registered udp transport module.
+RPC: Registered tcp transport module.
+RPC: Registered tcp-with-tls transport module.
+RPC: Registered tcp NFSv4.1 backchannel transport module.
+hw perfevents: enabled with armv7_cortex_a9 PMU driver, 5 counters available
+workingset: timestamp_bits=30 max_order=15 bucket_order=0
+squashfs: version 4.0 (2009/01/31) Phillip Lougher
+jffs2: version 2.2. (NAND) © 2001-2006 Red Hat, Inc.
+9p: Installing v9fs 9p2000 file system support
+io scheduler mq-deadline registered
+io scheduler kyber registered
+io scheduler bfq registered
+OF: graph: no port node found in /bus@40000000/motherboard-bus@40000000/iofpga@7,00000000/i2c@16000/dvi-transmitter@60
+sii902x 0-0060: supply iovcc not found, using dummy regulator
+sii902x 0-0060: supply cvcc12 not found, using dummy regulator
+simple-pm-bus bus@40000000:motherboard-bus@40000000:iofpga@7,00000000: Failed to create device link (0x180) with dcc:tcrefclk
+simple-pm-bus bus@40000000:motherboard-bus@40000000:iofpga@7,00000000: Failed to create device link (0x180) with dcc:tcrefclk
+physmap-flash 40000000.flash: physmap platform flash device: [mem 0x40000000-0x43ffffff]
+40000000.flash: Found 2 x16 devices at 0x0 in 32-bit bank. Manufacturer ID 0x000000 Chip ID 0x000000
+Intel/Sharp Extended Query Table at 0x0031
+Using buffer write method
+physmap-flash 40000000.flash: physmap platform flash device: [mem 0x44000000-0x47ffffff]
+40000000.flash: Found 2 x16 devices at 0x0 in 32-bit bank. Manufacturer ID 0x000000 Chip ID 0x000000
+Intel/Sharp Extended Query Table at 0x0031
+Using buffer write method
+Concatenating MTD devices:
+(0): "40000000.flash"
+(1): "40000000.flash"
+into device "40000000.flash"
+physmap-flash 48000000.psram: physmap platform flash device: [mem 0x48000000-0x49ffffff]
+smsc911x 4e000000.ethernet eth0: MAC Address: 52:54:00:12:34:56
+isp1760 4f000000.usb: isp1760 bus width: 32, oc: digital
+isp1760 4f000000.usb: NXP ISP1760 USB Host Controller
+isp1760 4f000000.usb: new USB bus registered, assigned bus number 1
+isp1760 4f000000.usb: Scratch test failed. 0x00000000
+isp1760 4f000000.usb: can't setup: -19
+isp1760 4f000000.usb: USB bus 1 deregistered
+usbcore: registered new interface driver usb-storage
+rtc-pl031 10017000.rtc: registered as rtc0
+rtc-pl031 10017000.rtc: setting system clock to 2024-02-27T22:21:07 UTC (1709072467)
+mmci-pl18x 10005000.mmci: Got CD GPIO
+mmci-pl18x 10005000.mmci: Got WP GPIO
+ledtrig-cpu: registered to indicate activity on CPUs
+usbcore: registered new interface driver usbhid
+usbhid: USB HID core driver
+mmci-pl18x 10005000.mmci: mmc0: PL181 manf 41 rev0 at 0x10005000 irq 35,36 (pio)
+aaci-pl041 10004000.aaci: ARM AC'97 Interface PL041 rev0 at 0x10004000, irq 37
+aaci-pl041 10004000.aaci: FIFO 512 entries
+NET: Registered PF_PACKET protocol family
+9pnet: Installing 9P2000 support
+Registering SWP/SWPB emulation handler
+10009000.serial: ttyAMA0 at MMIO 0x10009000 (irq = 38, base_baud = 0) is a PL011 rev1
+printk: console [ttyAMA0] enabled
+1000a000.serial: ttyAMA1 at MMIO 0x1000a000 (irq = 39, base_baud = 0) is a PL011 rev1
+1000b000.serial: ttyAMA2 at MMIO 0x1000b000 (irq = 40, base_baud = 0) is a PL011 rev1
+1000c000.serial: ttyAMA3 at MMIO 0x1000c000 (irq = 41, base_baud = 0) is a PL011 rev1
+drm-clcd-pl111 1001f000.clcd: assigned reserved memory node vram@4c000000
+drm-clcd-pl111 1001f000.clcd: using device-specific reserved memory
+drm-clcd-pl111 1001f000.clcd: core tile graphics present
+drm-clcd-pl111 1001f000.clcd: this device will be deactivated
+drm-clcd-pl111 1001f000.clcd: Versatile Express init failed - -19
+drm-clcd-pl111 10020000.clcd: DVI muxed to daughterboard 1 (core tile) CLCD
+mmc0: new SD card at address 4567
+mmcblk0: mmc0:4567 QEMU! 1.00 GiB
+drm-clcd-pl111 10020000.clcd: initializing Versatile Express PL111
+drm-clcd-pl111 10020000.clcd: DVI muxed to daughterboard 1 (core tile) CLCD
+ mmcblk0: p1 p2 p3
+drm-clcd-pl111 10020000.clcd: initializing Versatile Express PL111
+drm-clcd-pl111 10020000.clcd: DVI muxed to daughterboard 1 (core tile) CLCD
+input: AT Raw Set 2 keyboard as /devices/platform/bus@40000000/bus@40000000:motherboard-bus@40000000/bus@40000000:motherboard-bus@40000000:iofpga@7,00000000/10006000.kmi/serio0/input/input0
+drm-clcd-pl111 10020000.clcd: initializing Versatile Express PL111
+drm-clcd-pl111 10020000.clcd: DVI muxed to daughterboard 1 (core tile) CLCD
+drm-clcd-pl111 10020000.clcd: initializing Versatile Express PL111
+clk: Disabling unused clocks
+ALSA device list:
+  #0: ARM AC'97 Interface PL041 rev0 at 0x10004000, irq 37
+input: ImExPS/2 Generic Explorer Mouse as /devices/platform/bus@40000000/bus@40000000:motherboard-bus@40000000/bus@40000000:motherboard-bus@40000000:iofpga@7,00000000/10007000.kmi/serio1/input/input2
+drm-clcd-pl111 10020000.clcd: DVI muxed to daughterboard 1 (core tile) CLCD
+drm-clcd-pl111 10020000.clcd: initializing Versatile Express PL111
+EXT4-fs (mmcblk0p2): recovery complete
+EXT4-fs (mmcblk0p2): mounted filesystem 5d303cc3-79d3-40b9-988c-4f92f753f81b r/w with ordered data mode. Quota mode: disabled.
+VFS: Mounted root (ext4 filesystem) on device 179:2.
+Freeing unused kernel image (initmem) memory: 1024K
+Run /sbin/init as init process
+executing rcS script
+random: crng init done
+
+Please press Enter to activate this console. 
+~ # ls
+[1;34mbin[m         [1;34metc[m         [1;34mlost+found[m  [1;34msbin[m        [1;34musr[m
+[1;34mdev[m         [1;36mlinuxrc[m     [1;34mproc[m        [1;34msys[m
+~ # QEMU: Terminated
+

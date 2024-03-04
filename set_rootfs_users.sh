@@ -63,8 +63,11 @@ do
     echo "group_line ${group_line}"
     echo "${group_line}" >> group
     sudo mount rootfs.ext4 mount
+    sync
     sudo mkdir -p mount/${username}
+    sync
     sudo umount mount
+    sync
 
     echo ""
     if [ ${username} != "root" ]
@@ -84,11 +87,13 @@ done < "$input"
 
 # mount rootfs and copy passwd, shadow, and group files
 sudo mount rootfs.ext4 mount
+sync
 sudo cp passwd mount/etc
 sudo cp shadow mount/etc
 sudo cp group mount/etc
 sudo cp inittab mount/etc
+sync
 sudo umount mount
-
+sync
 
 

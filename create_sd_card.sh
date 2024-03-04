@@ -47,3 +47,5 @@ echo ${rootfs_partition}
 sudo mkfs.vfat -F 16 -n boot ${boot_partition}
 sudo mkfs.ext4 ${rootfs_partition}
 sudo losetup -d ${ld}
+sync
+

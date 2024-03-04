@@ -19,14 +19,18 @@ mkdir -p mount
 
 echo "ls boot partition"${boot_partition}
 sudo mount ${boot_partition} mount
+sync
 sudo ls -l mount
 sync
 sudo umount mount
+sync
 
 echo "ls rootfs partition "${rootfs_partition}
 sudo mount ${rootfs_partition} mount
+sync
 sudo ls -l mount
 sync
 sudo umount mount
 sync
 sudo losetup -d ${ld}
+sync

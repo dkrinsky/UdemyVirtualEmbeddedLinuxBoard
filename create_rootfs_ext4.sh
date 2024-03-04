@@ -2,12 +2,14 @@
 
 #start in top directory (above busybox)
 sudo umount mount_rootfs
+sync
 sudo rm -rf rootfs.ext4
-sudo sudo rm -rf mount_rootfs
+sudo rm -rf mount_rootfs
 dd if=/dev/zero of=rootfs.ext4 bs=1M count=128
 mkfs.ext4 rootfs.ext4
 mkdir -p mount_rootfs
 sudo mount rootfs.ext4 mount_rootfs
+sync
 cd mount_rootfs
 sudo cp -r ../busybox/rootfs/* ./
 sudo mkdir -p dev
@@ -24,7 +26,10 @@ sudo mkdir -p etc
 sudo mkdir -p etc/init.d
 sudo cp -r ../rcS etc/init.d
 sudo chmod +x etc/init.d/rcS
+sudo cp -r ../inittab etc/
+sync
 
+# create initramfs for optional runs not using rootfs
 if [ -f "../initramfs.cpio" ]; then
    echo "delete initramfs.cpio"
    sudo rm ../initramfs.cpio
@@ -38,3 +43,9 @@ find . | cpio -H newc -ov --owner root:root > ../initramfs.cpio
 cd ..
 gzip initramfs.cpio
 sudo umount mount_rootfs
+sync
+# create users
+bash set_rootfs_users.sh passwd
+sync
+
+

@@ -27,3 +27,8 @@ sudo umount mount
 sudo umount rootfs_mount
 
 sudo losetup -d ${ld}
+
+# make boot.scr (from boot.txt) and add to FAT (boot) parition1 of sd card
+
+mk_bootscr
+. add_to_sd_card.sh 1 boot.scr

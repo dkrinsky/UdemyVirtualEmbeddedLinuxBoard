@@ -1,1 +1,20 @@
+# The file /etc/inittab controls process dispatching by init.
+# The processes most typically dispatched by init are daemons.
+
+# The inittab file is composed of entries that are position dependent and
+# have the following format:
+
+# id:rstate:action:process
+
+# id - One to four characters used to uniquely identify an entry.
+# rstate - Define the run level in which this entry is to be processed.
+# action - Options include respawn, wait, once, boot, bootwait, powerfail, powerwait, off, ondemand, initdefault, sysinit,
+# process - Specify a command to be executed. 
+
+# for format details, see https://man.cx/inittab(4)
+
+::sysinit:/etc/init.d/rcS
+#::respawn:/bin/userdaemon -n
+::ctrlaltdel:/sbin/reboot
 ::respawn:/sbin/getty 115200 console
+::shutdown:/bin/umount -a r

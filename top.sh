@@ -34,6 +34,6 @@ mk_bootscr
 . add_to_sd_card.sh 1 boot.scr
 
 #run
-run_uboot_sdcard
+run_uboot
 
 

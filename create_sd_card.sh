@@ -1,3 +1,8 @@
+#!/usr/bin/bash
+
+echo "create_sd_card.sh"
+bash check_mounts.sh
+
 # create the sdcard.img file, 1G of zeros
 dd if=/dev/zero of=sdcard.img bs=1M count=1024
 
@@ -49,3 +54,5 @@ sudo mkfs.ext4 ${rootfs_partition}
 sudo losetup -d ${ld}
 sync
 
+bash check_mounts.sh
+echo "create_sd_card.sh DONE"

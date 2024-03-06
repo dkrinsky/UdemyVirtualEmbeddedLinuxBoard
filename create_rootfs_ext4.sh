@@ -1,5 +1,8 @@
 #!/usr/bin/bash
 
+echo "create_rootfs_ext4.sh"
+bash check_mounts.sh
+
 #start in top directory (above busybox)
 sudo umount mount_rootfs
 sync
@@ -27,6 +30,7 @@ sudo mkdir -p etc/init.d
 sudo cp -r ../rcS etc/init.d
 sudo chmod +x etc/init.d/rcS
 sudo cp -r ../inittab etc/
+sudo cp -r ../profile etc/
 sync
 
 # create initramfs for optional runs not using rootfs
@@ -48,4 +52,6 @@ sync
 bash set_rootfs_users.sh passwd
 sync
 
+bash check_mounts.sh
+echo "create_rootfs_ext4.sh DONE"
 

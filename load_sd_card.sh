@@ -1,3 +1,8 @@
+#!/usr/bin/bash
+
+echo "load_sd_card.sh"
+bash check_mounts.sh
+
 # losetup provides access to the sdcard partition for formatting
 # NOTE: we are NOT going to load the uboot image onto the sdcard
 # rather, we format the boot partition so it can store the uboot.env
@@ -32,3 +37,8 @@ sudo losetup -d ${ld}
 
 mk_bootscr
 . add_to_sd_card.sh 1 boot.scr
+
+sync
+bash check_mounts.sh
+
+echo "load_sd_card.sh DONE"

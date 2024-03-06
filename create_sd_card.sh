@@ -53,6 +53,6 @@ sudo mkfs.vfat -F 16 -n boot ${boot_partition}
 sudo mkfs.ext4 ${rootfs_partition}
 sudo losetup -d ${ld}
 sync
-
+sync
 bash check_mounts.sh
 echo "create_sd_card.sh DONE"

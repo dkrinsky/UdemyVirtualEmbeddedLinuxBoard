@@ -31,6 +31,8 @@ sudo cp -r ../rcS etc/init.d
 sudo chmod +x etc/init.d/rcS
 sudo cp -r ../inittab etc/
 sudo cp -r ../profile etc/
+sudo mkdir -p etc/network
+sudo cp -r ../interfaces etc/network
 sync
 
 # create initramfs for optional runs not using rootfs

@@ -10,8 +10,8 @@ alias "loop_setup_sdcard"="sudo losetup -f --show --partscan sdcard.img"
 #
 # run uboot commands
 #
-alias run_uboot="qemu-system-arm -M vexpress-a9 -m 128M -nographic -kernel bootloader/u-boot-2023.10/u-boot"
-alias run_uboot_sdcard="qemu-system-arm -M vexpress-a9 -m 128M -nographic -kernel bootloader/u-boot-2023.10/u-boot -sd sdcard.img"
+alias run_uboot_no_sdcard="qemu-system-arm -M vexpress-a9 -m 128M -nographic -kernel bootloader/u-boot-2023.10/u-boot"
+alias run_uboot="sudo qemu-system-arm -M vexpress-a9 -m 128M -nographic -kernel bootloader/u-boot-2023.10/u-boot -sd sdcard.img -net tap,script=./qemu-ifup -net nic"
 #
 # run kernel commands
 #

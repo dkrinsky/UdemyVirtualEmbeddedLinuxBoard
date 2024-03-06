@@ -2,3 +2,17 @@
 echo "executing rcS script"
 mount -t proc proc /proc
 mount -t sysfs sys /sys
+
+# can't get ifup/down and /etc/network/interfaces working correctly
+# ifup -a doesn't work (only enables lo)
+# ifdown -a doesn't work (returns eth0, lo not configured)
+# ifup eth0 works and sets ip address correctly based on interfaces
+# ifup lo works and sets ip address correctly based on interfaces
+
+#ifdown -a
+#ifup -a
+
+# usf ifconfig and route for now
+
+ifconfig eth0 192.168.0.100 up
+route add default gw 192.168.0.1

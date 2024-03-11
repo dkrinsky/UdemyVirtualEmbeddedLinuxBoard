@@ -1,6 +1,8 @@
 #!/usr/bin/bash
 #set -e
 
+sleep 1
+
 sudo losetup -a | egrep 'qemu_|sdcard' | tee losetup.out
 sudo findmnt | egrep 'qemu_|sdcard' | tee findmnt.out
 

@@ -78,10 +78,17 @@ do
        echo "create password for "${username}" "${userid}
        password="root"
     fi
-    salt="mypassword"
-    pwdhash=$(mkpasswd -m sha-512 ${password} -S ${salt})
+
+    if [ ${username} != "root" ]
+    then
+      salt="mypassword"
+      pwdhash=$(mkpasswd -m sha-512 ${password} -S ${salt})
+    else
+      pwdhash=""
+    fi
     echo "password"${password}" hash "$pwdhash
     echo ${username}":"${pwdhash}":"${last_password_change}"::::::" >> shadow
+
 
 done < "$input"
 

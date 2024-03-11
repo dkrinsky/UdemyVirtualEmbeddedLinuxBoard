@@ -16,3 +16,9 @@ mount -t sysfs sys /sys
 
 ifconfig eth0 192.168.0.100 up
 route add default gw 192.168.0.1
+
+/sbin/dropbearkey -t rsa -f /etc/dropbear/dropbear_rsa_host_key
+/sbin/dropbearkey -t dss -f /etc/dropbear/dropbear_dss_host_key
+
+/sbin/dropbear -p 22 -R -B -E
+

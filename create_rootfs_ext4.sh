@@ -22,6 +22,9 @@ sudo mknod dev/tty3 c 4 3
 sudo mknod dev/tty4 c 4 4
 sudo mknod -m 666 dev/null c 1 3
 sudo mknod -m 600 dev/console c 5 1
+
+sudo mknod -m 644 dev/random c 1 8
+sudo mknod -m 644 dev/urandom c 1 9
 # create proc,sys,etc directories
 sudo mkdir -p proc
 sudo mkdir -p sys
@@ -33,6 +36,10 @@ sudo cp -r ../inittab etc/
 sudo cp -r ../profile etc/
 sudo mkdir -p etc/network
 sudo cp -r ../interfaces etc/network
+
+sudo mkdir -p etc/dropbear
+sudo cp -r ../dropbear/dropbear-2022.82/dropbear sbin/
+sudo cp -r ../dropbear/dropbear-2022.82/dropbearkey sbin/
 sync
 
 # create initramfs for optional runs not using rootfs

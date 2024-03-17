@@ -3,6 +3,8 @@ echo "executing rcS script"
 mount -t proc proc /proc
 mount -t sysfs sys /sys
 
+#start syslog
+syslogd
 # can't get ifup/down and /etc/network/interfaces working correctly
 # ifup -a doesn't work (only enables lo)
 # ifdown -a doesn't work (returns eth0, lo not configured)
@@ -17,8 +19,16 @@ mount -t sysfs sys /sys
 ifconfig eth0 192.168.0.100 up
 route add default gw 192.168.0.1
 
-/sbin/dropbearkey -t rsa -f /etc/dropbear/dropbear_rsa_host_key
-/sbin/dropbearkey -t dss -f /etc/dropbear/dropbear_dss_host_key
 
-/sbin/dropbear -p 22 -R -B -E
+# create pseudo terminal for dropbear ssh connection
+# this feature is not yet working however.
+mkdir /dev/pts
+mount -t devpts -o rw,mode=620,ptmxmode=666 devpts /dev/pts
+
+
+# at one point, generating the keys manually seemed to work better,
+# but now the -R option seems sufficient
+#/sbin/dropbearkey -t rsa -f /etc/dropbear/dropbear_rsa_host_key
+#/sbin/dropbearkey -t dss -f /etc/dropbear/dropbear_dss_host_key
+/sbin/dropbear -p 22 -R -B
 
